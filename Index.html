@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Graphic Designer Portfolio</title>
+  <style>
+    :root {
+      --bg: #171c23;
+      --bg-card: #232834;
+      --primary: #1ee3cf;
+      --secondary: #43cbff;
+      --highlight: #fff;
+      --text: #cbd6e2;
+      --muted: #7b8290;
+      --surface: #232834;
+      --border: #20232b;
+      --accent: #1976d2;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .banner {
+      padding: 56px 0 30px 0;
+      text-align: center;
+      background: linear-gradient(100deg, var(--accent) 0%, var(--primary) 100%);
+    }
+    .banner h1 {
+      color: var(--primary);
+      font-size: 2.7rem;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 16px #0ad6b6a0;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .banner p {
+      margin: 0 0 28px 0;
+      font-size: 1.20rem;
+      color: #ebeef6;
+    }
+    .banner .cta {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin-top: 6px;
+    }
+    .banner .cta a {
+      background: var(--primary);
+      color: var(--bg-card);
+      font-weight: bold;
+      border-radius: 42px;
+      font-size: 1.07rem;
+      padding: 11px 28px;
+      letter-spacing: 0.6px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .banner .cta a:hover {
+      background: var(--highlight);
+      color: var(--accent);
+    }
+
+    nav {
+      background: transparent;
+      margin-top: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin: 0 18px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.23s;
+    }
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 38px auto 0 auto;
+      background: var(--bg-card);
+      border-radius: 13px;
+      box-shadow: 0 3px 16px #05161d44;
+      padding: 38px 28px 35px 28px;
+      margin-bottom: 32px;
+    }
+    h2 {
+      color: var(--primary);
+      font-size: 1.32rem;
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 26px;
+      margin-bottom: 18px;
+    }
+    .service-card {
+      flex: 1 1 170px;
+      background: #242935;
+      border-radius: 9px;
+      box-shadow: 0 2px 10px #121c2350;
+      padding: 22px 13px 19px 13px;
+      min-width: 170px;
+      max-width: 210px;
+      text-align: center;
+      margin-bottom: 12px;
+      border: 1.2px solid var(--border);
+      transition: box-shadow 0.2s, transform 0.14s;
+    }
+    .service-card:hover {
+      box-shadow: 0 16px 32px #1ee3cf44;
+      transform: translateY(-5px) scale(1.025);
+    }
+    .service-card .icon {
+      font-size: 2.7rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+      user-select: none;
+    }
+    .service-card h3 {
+      font-size: 1.01rem;
+      font-weight: 600;
+      margin-bottom: 9px;
+      color: var(--secondary);
+    }
+    .service-card p {
+      font-size: 0.99rem;
+      color: var(--muted);
+      min-height: 34px;
+    }
+
+    .portfolio-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 25px;
+      justify-content: center;
+    }
+    .portfolio-filters button {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      color: var(--text);
+      font-size: 0.97rem;
+      padding: 5.5px 16px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .portfolio-filters button.active,
+    .portfolio-filters button:hover {
+      background: var(--primary);
+      color: var(--bg-card);
+      border-color: var(--primary);
+    }
+    .portfolio-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      justify-content: flex-start;
+    }
+    .portfolio-card {
+      background: #222733;
+      border-radius: 8px;
+      box-shadow: 0 1.4px 8px #013d4040;
+      width: 244px;
+      text-align: left;
+      padding: 0 0 15px 0;
+      overflow: hidden;
+      margin-bottom: 10px;
+      border: 1.4px solid var(--border);
+      transition: box-shadow 0.18s, transform 0.13s;
+      position: relative;
+      user-select: none;
+    }
+    .portfolio-card:hover {
+      box-shadow: 0 12px 32px #1ee3cf88;
+      transform: translateY(-4px);
+    }
+    .portfolio-card img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      display: block;
+      background: #232834;
+      user-select: none;
+    }
+    .project-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.84rem;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 2px 14px;
+      z-index: 3;
+      letter-spacing: 0.6px;
+      box-shadow: 0 2px 6px #191d2570;
+    }
+    .portfolio-info {
+      padding: 11px 14px 8px 14px;
+    }
+    .portfolio-card h4 {
+      color: var(--primary);
+      font-size: 0.99rem;
+      margin: 5.5px 0 4px 0;
+      font-weight: 600;
+    }
+    .portfolio-card p {
+      color: var(--muted);
+      font-size: 0.984rem;
+      margin: 0 0 7px 0;
+    }
+    .portfolio-card a {
+      color: var(--secondary);
+      font-size: 0.92rem;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .portfolio-card a:hover {
+      color: var(--highlight);
+    }
+
+    .about-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+    .about-left {
+      flex: 2 1 380px;
+    }
+    .about-right {
+      flex: 1 1 220px;
+      background: #181c22;
+      border-radius: 10px;
+      padding: 24px 17px 22px 17px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      min-width: 180px;
+      min-height: 130px;
+      gap: 10px;
+      user-select: none;
+    }
+    .about-right .stat {
+      font-size: 1.45rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin-right: 8px;
+      letter-spacing: 1.1px;
+    }
+    .about-right .stat-label {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-left: 2px;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0 0 0;
+      color: var(--text);
+      user-select: text;
+    }
+    .contact-list li {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+    .contact-list a {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+    .contact-list a:hover {
+      color: var(--highlight);
+    }
+
+    .cta-footer {
+      text-align: center;
+      margin-top: 33px;
+      margin-bottom: -14px;
+      user-select: none;
+    }
+    .cta-footer h2 {
+      font-weight: 700;
+      font-size: 1.48rem;
+      margin-bottom: 14px;
+      color: var(--primary);
+      letter-spacing: 0.9px;
+    }
+    .cta-footer a {
+      background: var(--primary);
+      color: var(--bg-card);
+      font-weight: bold;
+      border-radius: 42px;
+      font-size: 1.07rem;
+      padding: 11px 34px;
+      letter-spacing: 0.6px;
+      text-decoration: none;
+      margin: 0 12px;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 12px var(--primary);
+    }
+    .cta-footer a:hover {
+      background: var(--highlight);
+      color: var(--accent);
+      box-shadow: 0 6px 32px #1ee3cfa0;
+    }
+    footer {
+      background: #191d25;
+      color: #7a96bc;
+      text-align: center;
+      font-size: 1.02rem;
+      padding: 16px 8px;
+      margin-top: 50px;
+      border-radius: 0 0 13px 13px;
+      letter-spacing: 0.07em;
+      user-select: none;
+    }
+    @media (max-width: 1200px) {
+      .portfolio-grid {
+        justify-content: center;
+      }
+      section {
+        padding: 20px 3vw;
+      }
+    }
+    @media (max-width: 800px) {
+      .about-flex {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .portfolio-grid {
+        gap: 16px;
+      }
+    }
+    @media (max-width: 600px) {
+      .banner {
+        padding: 36px 0 22px 0;
+      }
+      .banner h1 {
+        font-size: 1.43rem;
+      }
+      nav a {
+        margin: 0 7px;
+      }
+      section {
+        padding: 12px 3vw;
+      }
+      .featured-projects,
+      .portfolio-grid {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">
+    <h1>Graphic Designer</h1>
+    <p>
+      Crafting creative visuals, UI/UX solutions, music posters, and professional branding that elevate your business presence.
+    </p>
+    <div class="cta">
+      <a href="https://www.behance.net/dark-changacha" target="_blank" rel="noopener noreferrer">Portfolio</a>
+      <a href="https://www.behance.net/gallery/231132327/resume" rel="noopener noreferrer">Resume</a>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#services">What I Create</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="services">
+    <h2>What I Create</h2>
+    <div class="services">
+      <div class="service-card">
+        <div class="icon">🎨</div>
+        <h3>Logo Design</h3>
+        <p>Unique logos that capture your brand's identity and vision.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">💬</div>
+        <h3>Social Media Design</h3>
+        <p>Engaging posts, banners, and campaign visuals for social platforms.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">📰</div>
+        <h3>Advertisement Design</h3>
+        <p>Impactful ad creatives for print and digital marketing.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">🎵</div>
+        <h3>Music Posters</h3>
+        <p>Vibrant, bold posters for music events, artists, and albums.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">🎬</div>
+        <h3>Movie Posters</h3>
+        <p>Striking art for movies, series, and entertainment events.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">📱</div>
+        <h3>UI/UX Design</h3>
+        <p>Modern app and website interfaces focused on user experience.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">📦</div>
+        <h3>Packaging Design</h3>
+        <p>Creative, market-ready packaging for products and brands.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">📖</div>
+        <h3>Brochures & Flyers</h3>
+        <p>Polished print design for business, events, and promotions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <h2>My Portfolio</h2>
+    <div class="portfolio-filters">
+      <button class="active" aria-pressed="true">All</button>
+      <button aria-pressed="false">Logo</button>
+      <button aria-pressed="false">App Design</button>
+      <button aria-pressed="false">Poster</button>
+      <button aria-pressed="false">Social Media</button>
+      <button aria-pressed="false">Packaging</button>
+      <button aria-pressed="false">Brochure</button>
+      <button aria-pressed="false">Ad</button>
+      <button aria-pressed="false">Magazine Cover</button>
+      <button aria-pressed="false">Image Manipulation</button>
+      <button aria-pressed="false">Movie Poster</button>
+    </div>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card">
+        <span class="project-badge">App Design</span>
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80" alt="App Design Project" />
+        <div class="portfolio-info">
+          <h4>App design</h4>
+          <p>Modern mobile UI.</p>
+          <a href="https://www.behance.net/gallery/227453145/Ai-chatbot-mobile-UI-design-concept" target="_blank" rel="noopener noreferrer">See the design</a>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <span class="project-badge">Social Media</span>
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Social Media Design" />
+        <div class="portfolio-info">
+          <h4>Brand Campaign</h4>
+          <p>Coherent visuals for digital audience engagement.</p>
+          <a href="https://www.behance.net/gallery/229095589/advertisement" target="_blank" rel="noopener noreferrer">See More</a>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <span class="project-badge">Logo</span>
+        <img src="https://images.unsplash.com/photo-1523475496153-3d6cc38ca44f?auto=format&fit=crop&w=600&q=80" alt="Logo Design" />
+        <div class="portfolio-info">
+          <h4>Logo design</h4>
+          <p>Fresh visual identity for startup.</p>
+          <a href="https://www.behance.net/gallery/226993099/logo-mockups" target="_blank" rel="noopener noreferrer">See More</a>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <span class="project-badge">Ad</span>
+        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Advertisement Design" />
+        <div class="portfolio-info">
+          <h4>Product Advertisement</h4>
+          <p>High-impact visuals for online campaign.</p>
+          <a href="https://www.behance.net/gallery/229095589/advertisement" target="_blank" rel="noopener noreferrer">See More</a>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <span class="project-badge">Music Poster</span>
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Music Poster" />
+        <div class="portfolio-info">
+          <h4>Music Fest Poster</h4>
+          <p>Energetic design for live event promotion.</p>
+          <a href="https://www.behance.net/dark-changacha" target="_blank" rel="noopener noreferrer">See More</a>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <span class="project-badge">App Showcase</span>
+        <img src="https://images.unsplash.com/photo-1501876725168-00c445821c9e?auto=format&fit=crop&w=600&q=80" alt="App Showcase" />
+        <div class="portfolio-info">
+          <h4>Web page design</h4>
+          <p>Minimalist UI for website platform.</p>
+          <a href="https://www.behance.net/gallery/226389439/lumier-complete-perfume-website-UI-concept" target="_blank" rel="noopener noreferrer">See More</a>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <span class="project-badge">Wedding card</span>
+        <img src="https://images.unsplash.com/photo-1523475496153-3d6cc38ca44f?auto=format&fit=crop&w=600&q=80" alt="Packaging" />
+        <div class="portfolio-info">
+          <h4>Wedding cards</h4>
+          <p>Clean and printable design for the wedding invitations.</p>
+          <a href="https://www.behance.net/gallery/226992623/wedding-invitation" target="_blank" rel="noopener noreferrer">View Work</a>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <span class="project-badge">Brochure</span>
+        <img src="https://images.unsplash.com/photo-1496294423918-340fa1d56308?auto=format&fit=crop&w=600&q=80" alt="Brochure Design" />
+        <div class="portfolio-info">
+          <h4>Business Brochure</h4>
+          <p>Clean print design for pitch or promotions.</p>
+          <a href="https://www.behance.net/gallery/229403505/posterbrochure" target="_blank" rel="noopener noreferrer">See More</a>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <span class="project-badge">Magazine Cover</span>
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Magazine Cover Design" />
+        <div class="portfolio-info">
+          <h4>Creative Magazine Cover</h4>
+          <p>Bold, modern cover design for a lifestyle magazine.</p>
+          <a href="https://www.behance.net/gallery/your-magazine-cover-link" target="_blank" rel="noopener noreferrer">View Project</a>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <span class="project-badge">Image Manipulation</span>
+        <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=600&q=80" alt="Image Manipulation Project" />
+        <div class="portfolio-info">
+          <h4>Surreal Image Manipulation</h4>
+          <p>Creative compositing and photo editing for advertising.</p>
+          <a href="https://www.behance.net/gallery/225884637/image-manipulation" target="_blank" rel="noopener noreferrer">See Details</a>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <span class="project-badge">Movie Poster</span>
+        <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=600&q=80" alt="Movie Poster Design" />
+        <div class="portfolio-info">
+          <h4>Indie Film Poster</h4>
+          <p>Striking visual concept poster for an independent movie.</p>
+          <a href="https://www.behance.net/gallery/your-movie-poster-link" target="_blank" rel="noopener noreferrer">View Poster</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-flex">
+      <div class="about-left">
+        <p>
+          Hi! I’m Vanshika, a graphic designer and UI/UX creator from Delhi. With a B.Voc from Arena Animation and a creative journey spanning over a year, I bring ideas to life through vibrant visuals and impactful digital experiences.
+        </p>
+        <ul class="contact-list">
+          <li><strong>Email:</strong> <a href="mailto:vanshu2004gupta@gmail.com">vanshu2004gupta@gmail.com</a></li>
+          <li><strong>Phone:</strong> 8587805032</li>
+          <li><strong>Location:</strong> Delhi, India</li>
+          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/vanshika-gupta-91b0602b9" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></li>
+          <li><strong>Behance:</strong> <a href="https://www.behance.net/dark-changacha" target="_blank" rel="noopener noreferrer">dark-changacha</a></li>
+        </ul>
+      </div>
+      <div class="about-right">
+        <div>
+          <span class="stat">15+</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div>
+          <span class="stat">1</span>
+          <span class="stat-label">Year Experience</span>
+        </div>
+        <div>
+          <span class="stat">10+</span>
+          <span class="stat-label">Clients</span>
+        </div>
+        <div>
+          <span class="stat">100%</span>
+          <span class="stat-label">Success Rate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="cta-footer">
+      <h2>Ready to Work Together?</h2>
+      <!-- Calendly link here -->
+      <a href="https://calendly.com/vanshu2004gupta" target="_blank" rel="noopener noreferrer">Let's Connect</a>
+    </div>
+  </section>
+
+  <footer>
+    © Vanshika, 2025. Designed with passion in Delhi.
+  </footer>
+</body>
+</html>
